@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Club Management</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f3f6fb; margin: 0; padding: 25px; color: #243047; }
+    main { max-width: 1100px; margin: auto; }
+    h1, h2 { color: #173b70; }
+    .panel { background: white; padding: 20px; margin: 20px 0; border-radius: 10px; box-shadow: 0 2px 8px #00000010; }
+    form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    input, textarea, button { padding: 11px; font-size: 15px; box-sizing: border-box; }
+    input, textarea { width: 100%; border: 1px solid #ccd4df; border-radius: 5px; }
+    textarea { min-height: 65px; }
+    button { cursor: pointer; border: none; border-radius: 5px; background: #1e5a9e; color: white; }
+    .actions { display: flex; gap: 6px; flex-wrap: wrap; }
+    .delete { background: #b42318; }
+    .cancel { background: #596579; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; background: white; }
+    th, td { border: 1px solid #dce2ea; padding: 10px; text-align: left; }
+    th { background: #e6edf7; }
+    #message { margin: 12px 0; }
+    @media (max-width: 600px) { form { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Campus Club Management System</h1>
+  <p>Add, view, edit and delete campus club records.</p>
+
+  <section class="panel">
+    <h2 id="formTitle">Add a Club</h2>
+    <form id="clubForm">
+      <input type="text" name="name" placeholder="Club name" required>
+      <input type="text" name="category" placeholder="Category" required>
+      <textarea name="description" placeholder="Description" required></textarea>
+      <input type="text" name="meeting_day" placeholder="Meeting day" required>
+      <input type="text" name="president" placeholder="President's name" required>
+      <input type="email" name="contact_email" placeholder="Contact email" required>
+      <button type="submit" id="saveButton">Add Club</button>
+      <button type="button" id="cancelButton" class="cancel" hidden>Cancel Edit</button>
+    </form>
+    <p id="message" role="status"></p>
+  </section>
+
+  <section class="panel">
+    <h2>Registered Clubs</h2>
+    <button type="button" id="refreshButton">Refresh Records</button>
+    <p id="count"></p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th><th>Name</th><th>Category</th><th>Description</th>
+            <th>Meeting Day</th><th>President</th><th>Email</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="clubTable"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
